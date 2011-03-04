@@ -21,8 +21,8 @@ Rough Draft; r1
 
 TODO: 
 
-	- Comment/Annotate
-	
-	- More ref tests
-	
-	- Better DOM manipulation
+- Comment/Annotate
+
+- More ref tests
+
+- Better DOM manipulation
