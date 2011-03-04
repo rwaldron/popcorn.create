@@ -1,5 +1,6 @@
 # popcorn.create.js
 
+Rough Draft; r1
 
 		Popcorn.create({
 
@@ -16,3 +17,12 @@
 
 		});	
 
+
+
+TODO: 
+
+	- Comment/Annotate
+	
+	- More ref tests
+	
+	- Better DOM manipulation
