@@ -51,3 +51,43 @@ test("create( options )", function() {
   });
 
 });
+
+
+test("create( with specified player )", function() {
+
+  var expects = 2, 
+      count = 0;
+
+  expect(expects);
+  
+  function plus() { 
+    
+    if ( ++count === expects ) {
+      start(); 
+    }
+  }  
+  
+  stop();
+  
+  Popcorn.create({
+		
+		player: "youtube-fixture",
+    src: "http://www.youtube.com/watch?v=ODfNCouWB-4",
+		settings: {
+			//	player settings here
+		}
+  
+  }).listen( "loadeddata", function() {
+      console.log("loadeddata");
+    //ok( true, "loadedmetadata fired on hidden video element" );
+    //plus();
+    
+    //this.appendTo( "#unmoved-fixture" );
+    
+    
+    //equal( document.getElementById( "unmoved-fixture" ).childNodes.length, 1, "#unmoved-fixture as 1 childNode" );
+    //plus();
+  
+  });
+
+});

@@ -9,6 +9,7 @@
  
   Popcorn.create.init = function( options ) {
     
+		if ( options. )
     var video = doc.createElement( "video" ), 
         guid = Popcorn.guid( "__popcorn" );
     
@@ -44,6 +45,8 @@
         
         orig.parentNode.removeChild( orig );
       }
+
+			return this;
     }
   });
 
