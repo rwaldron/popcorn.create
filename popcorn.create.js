@@ -8,22 +8,48 @@
   };
  
   Popcorn.create.init = function( options ) {
-    
-		if ( options. )
-    var video = doc.createElement( "video" ), 
-        guid = Popcorn.guid( "__popcorn" );
-    
-    
-    options.id = options.id || guid;
-    
-    Popcorn.extend( video, options );
-    
-    video.style.display = "none";
-    
-    doc.body.appendChild( video );
-    
-    return Popcorn( "#" + options.id );
 
+		// If a player has been specified and that player exists and a src exists
+		// create the new popcorn object with specified player plugin
+		if ( options.player && Popcorn[ options.player ] && options.src ) {
+			
+			// Return fully created Popcorn media object
+			return Popcorn(
+				      	Popcorn[ options.player ]( 
+									options.placeholder, 
+									options.src, 
+									options.setup || {} 
+								)
+							);
+			
+		} else {
+			
+			// Create new video element 
+			// TODO: modify to accept either audio or video 
+	    var video = doc.createElement( "video" ), 
+	        guid = Popcorn.guid( "__popcorn" ), 
+					pop;
+
+	    options.id = options.id || guid;
+
+	    Popcorn.extend( video, options );
+
+	    video.style.display = "none";
+
+	    doc.body.appendChild( video );
+			
+			pop = Popcorn( "#" + options.id );
+			// If a placeholder was specified, 
+			// immediately append new media 
+			if ( options.placeholder ) {
+				pop.appendTo( 
+					( options.placeholder[0] !== "#" ? "#" : "" ) + 
+					options.placeholder
+				);
+			}
+
+	    return pop;
+		}
   };
   
   //  Popcorn.create() returns a popcorn object
@@ -32,20 +58,21 @@
     appendTo: function( parent ) {
       
       var matches = doc.querySelectorAll( parent ), 
-          orig = doc.getElementById( this.video.id ), 
-          clone = this.video.cloneNode( true );
+          orig = doc.getElementById( this.media.id ), 
+          clone = this.media.cloneNode( true );
       
       if ( matches.length ) {
         
         matches[ 0 ].appendChild( clone );
         
-        this.video = clone;
+        this.media = clone;
         
-        this.video.style.display = "";
+        this.media.style.display = "";
         
         orig.parentNode.removeChild( orig );
       }
-
+			
+			// Allow appendTo() to chain
 			return this;
     }
   });
