@@ -26,17 +26,17 @@
 			
 			// Create new video element 
 			// TODO: modify to accept either audio or video 
-	    var video = doc.createElement( "video" ), 
+	    var media = doc.createElement( options.type || "video" ), 
 	        guid = Popcorn.guid( "__popcorn" ), 
 					pop;
 
 	    options.id = options.id || guid;
 
-	    Popcorn.extend( video, options );
+	    Popcorn.extend( media, options );
 
-	    video.style.display = "none";
+	    media.style.display = "none";
 
-	    doc.body.appendChild( video );
+	    doc.body.appendChild( media );
 			
 			pop = Popcorn( "#" + options.id );
 			// If a placeholder was specified, 

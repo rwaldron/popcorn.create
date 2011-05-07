@@ -21,7 +21,7 @@ Rough Draft; r1
 		// If a `player` property is set, that player will be used 
 		// to create the new popcorn object
 		
-	  Popcorn.create({
+	  var $vimeo = Popcorn.create({
       
 			// Specify which player to use
 			player: "vimeo",
@@ -35,14 +35,14 @@ Rough Draft; r1
 			}
 
 	  }).listen( "loadedmetadata", function() {
+				
+				// note: Popcorn 0.5 youtube player currently does not support the "loadedmetadata" event
 
-			ok( true, "loadedmetadata fired on vimeo element" );
-	    plus();
-
-	    equal( document.getElementById( "vimeo-fixture" ).nodeName, "OBJECT", "#vimeo-fixture was converted into an &lt;object&gt; element" );
-	    plus();
 	  });
 		
+    // returns popcorn-ified vimeo player object
+		$vimeo;
+
 
 
 TODO: 

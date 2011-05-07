@@ -20,7 +20,7 @@ test("Popcorn.create", function() {
   
 });
 
-test("Popcorn.p.appendTo()", function() {
+test("Popcorn.prototype.appendTo()", function() {
   
   var expects = 3, 
       count = 0;
