@@ -40,14 +40,25 @@
 	//	Popcorn.create() returns a popcorn object
 
 	Popcorn.extend( Popcorn.p, {
-		appendTo: function( parent ) {
+		appendTo: function( selector ) {
 
-			var matches = doc.querySelectorAll( parent ),
-				orig = doc.getElementById( this.media.id ),
-				clone = this.media.cloneNode( true );
+			var parent, matches, match, orig, clone;
 
-			if ( matches.length ) {
-				matches[ 0 ].appendChild( clone );
+			if ( selector.nodeType ) {
+				parent = selector;
+			} else {
+				matches = document.querySelectorAll( selector );
+
+				if ( matches.length ) {
+					parent = matches[ 0 ];
+				}
+			}
+
+			orig = document.getElementById( this.media.id );
+			clone = this.media.cloneNode( true );
+
+			if ( parent ) {
+				parent.appendChild( clone );
 
 				this.media = clone;
 				this.media.style.display = "";
