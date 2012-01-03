@@ -1,7 +1,5 @@
 //	Requires Popcorn.js
-(function( global, Popcorn ) {
-
-	var doc = global.document;
+(function( window, document, Popcorn ) {
 
 	Popcorn.create = function( options ) {
 		return new Popcorn.create.init( options );
@@ -13,7 +11,7 @@
 
 		// Create new video element
 		// TODO: modify to accept either audio or video
-		media = doc.createElement( options.type || "video" );
+		media = document.createElement( options.type || "video" );
 		guid = Popcorn.guid( "__popcorn" );
 
 
@@ -21,9 +19,10 @@
 
 		Popcorn.extend( media, options );
 
+		// Attach the hidden media element to the body,
+		// Allowing it to load out of sight
 		media.style.display = "none";
-
-		doc.body.appendChild( media );
+		document.body.appendChild( media );
 
 		pop = Popcorn( "#" + options.id );
 		// If a placeholder was specified,
@@ -44,17 +43,14 @@
 		appendTo: function( parent ) {
 
 			var matches = doc.querySelectorAll( parent ),
-					orig = doc.getElementById( this.media.id ),
-					clone = this.media.cloneNode( true );
+				orig = doc.getElementById( this.media.id ),
+				clone = this.media.cloneNode( true );
 
 			if ( matches.length ) {
-
 				matches[ 0 ].appendChild( clone );
 
 				this.media = clone;
-
 				this.media.style.display = "";
-
 				orig.parentNode.removeChild( orig );
 			}
 
@@ -63,4 +59,4 @@
 		}
 	});
 
-})( this, Popcorn );
+})( this, this.document, this.Popcorn );
