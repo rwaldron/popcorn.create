@@ -2,51 +2,25 @@
 
 Rough Draft; r1
 
-    Popcorn.create({
+```js
+Popcorn.create({
 
-      src: "assets/snowdriving.ogv",
-      controls: true
+  src: "assets/snowdriving.ogv",
+  controls: true
 
-    }).listen( "loadedmetadata", function() {
+}).listen( "loadedmetadata", function() {
 
-      //	`this` is the Popcorn object returned by the video
-
-
-      this.appendTo( selector );
+  // `this` is the Popcorn object returned by the video
 
 
-    });	
-
-		
-    // If a `player` property is set, that player will be used 
-    // to create the new popcorn object
-		
-    var $vimeo = Popcorn.create({
-
-      // Specify which player to use
-      player: "vimeo",
-
-      // args to Popcorn.vimeo()    
-      placeholder: "vimeo-fixture", 
-      src: "http://vimeo.com/22444635",
-      setup: {
-        // player settings here
-        // TODO: this is currently untested
-      }
-
-    }).listen( "loadedmetadata", function() {
-				
-      // note: Popcorn 0.5 youtube player currently does not 
-      // support the "loadedmetadata" event
-
-    });
-		
-    // returns popcorn-ified vimeo player object
-    $vimeo;
+  this.appendTo( selector );
 
 
+});
+```
 
-TODO: 
+
+TODO:
 
 - Comment/Annotate
 
